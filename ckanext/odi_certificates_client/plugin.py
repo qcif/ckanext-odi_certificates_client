@@ -1,8 +1,8 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+
 import ckanext.odi_certificates_client.logic.action.get as action_get
 import ckanext.odi_certificates_client.logic.auth.get as auth_get
-
 
 
 class Odi_Certificates_ClientPlugin(plugins.SingletonPlugin):
@@ -11,17 +11,6 @@ class Odi_Certificates_ClientPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IRoutes, inherit=True)
     plugins.implements(plugins.IActions, inherit=True)
     plugins.implements(plugins.IAuthFunctions, inherit=True)
-
-    # IConfigurable
-
-    def configure(self, config):
-        self.site_url = config.get('ckan.site_url')
-        self.odi_certificates_config = {
-            'server': config.get('odi_certificates.server'),
-            'username': config.get('odi_certificates.username'),
-            'token': config.get('odi_certificates.token'),
-            'data': config.get('odi_certificates.jurisdiction')
-        }
 
     # IConfigurer
 
@@ -34,13 +23,17 @@ class Odi_Certificates_ClientPlugin(plugins.SingletonPlugin):
 
     def before_map(self, map):
         odi_certificates_client_controller = 'ckanext.odi_certificates_client.controllers.odi_certificates_client:OdiCertificatesClientController'
-        map.connect('odi_certificate_get_from_id', '/odi_certificate/:id', controller=odi_certificates_client_controller,
-                    action='odi_certificate_get_from_id')
+        map.connect('odi_certificate_get_from_id', '/odi_certificate/:id',
+                    controller=odi_certificates_client_controller,
+                    action='odi_certificate_get_from_id',
+                    conditions=dict(method=['GET']))
         map.connect('odi_certificate_location_get_from_id', '/odi_certificate/location/:id',
                     controller=odi_certificates_client_controller,
-                    action='odi_certificate_location_get_from_id')
-        map.connect('odi_certificates_get_all', '/odi_certificate/all', controller=odi_certificates_client_controller,
-                    action='odi_certificates_get_all')
+                    action='odi_certificate_location_get_from_id',
+                    conditions=dict(method=['GET']))
+        map.connect('odi_certificates_get_all', '/odi_certificates/all', controller=odi_certificates_client_controller,
+                    action='odi_certificates_get_all',
+                    conditions=dict(method=['GET']))
         return map
 
     # IActions
