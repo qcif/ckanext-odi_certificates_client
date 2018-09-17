@@ -26,12 +26,6 @@ def get_auth():
 
 
 def get_request_path_for(path_function, params_function=None):
-    """
-
-    :param path_function:
-    :param params_function:
-    :return:
-    """
     request_path = _certs_config['server'] + path_function()
     if params_function:
         request_path = t['h']._url_with_params(request_path, params_function())
@@ -58,17 +52,25 @@ def _get_ckan_hostname():
 
 
 def get_ckan_dataset_url(data_dict):
-    '''
-    Returns the full URL (HTML page) of the package.
-    '''
     name = t.get_or_bust(data_dict, 'name')
-    # start = 'http://host.docker.internal:5000'
-    # log.debug('start is %s', start)
-    # end = t.url_for(controller='package', action='read', id=name)
-    # log.debug('end is %s', end)
     ckan_dataset_url = urljoin(_ckan_site_url, t.url_for(controller='package', action='read', id=name))
     log.debug('Returning ckan dataset url: %s', ckan_dataset_url)
     return ckan_dataset_url
+
+
+def location_response_headers(response):
+    if not response.headers or not response.headers.get('Location', ''):
+        t.abort(404, t._("No odi certificate location was found."))
+    return response.headers['Location'] + '.json'
+
+
+def _get_task_context(self, context):
+    sysadmin = p.toolkit.get_action('get_site_user')(context)
+    return {
+        'site_url': self.site_url,
+        'certs_config': self.certs_config,
+        'apikey': sysadmin.get('apikey')
+    }
 
 
 def ckan_context():
