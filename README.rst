@@ -32,17 +32,17 @@
 ckanext-odi_certificates_client
 =============
 
-.. Put a description of your extension here:
-   What does it do? What features does it have?
-   Consider including some screenshots or embedding a video!
+A API client for use with odi certificate server requests
+
+
 
 
 ------------
 Requirements
 ------------
 
-For example, you might want to mention here which versions of CKAN this
-extension works with.
+Tested against: Ckan API 2.7.3
+(See requirements.txt)
 
 
 ------------
@@ -59,7 +59,7 @@ To install ckanext-odi_certificates_client:
 
      . /usr/lib/ckan/default/bin/activate
 
-2. Install the ckanext-odi_certificates_client Python package into your virtual environment::
+2. Install the ckanext-odi_certificates_client Python package into your virtual environment (pending)::
 
      pip install ckanext-odi_certificates_client
 
