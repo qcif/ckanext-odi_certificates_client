@@ -32,7 +32,7 @@
 ckanext-odi_certificates_client
 =============
 
-A API client for use with odi certificate server requests
+An API client for use with odi certificate server requests
 
 
 
