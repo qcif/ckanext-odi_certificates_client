@@ -76,27 +76,31 @@ To install ckanext-odi_certificates_client:
 Config Settings
 ---------------
 
-    Config required to communicate with any odi certificate server
+    Config required to communicate with any odi certificate server (values are examples only)
 
     - (**OPTIONAL**) When the odi certificate server tries to read urls from your ckan dataset, an alias/proxy may be needed for the odi certificate server to see your ckan datasets, whose records might use a URL not accessible by the odi certificate server::
     
     ``ckan.site.alias_url = http://alias_site_url:5000``
         
-    # base url for the odi certificate server
-    # *REQUIRED*
-    ckanext.odi_certificates.server = http://myodicertificateserver:3000
-    # username (usually in email form) for an odi certificate server admin account
-    # *REQUIRED*
-    ckanext.odi_certificates.username = test@example.com
-    # API token. The odi certificate server 'Account' page of any registered user will reveal their API key
-    # *REQUIRED*
-    ckanext.odi_certificates.token = KASDFASDFXXXSed0e9fg
-    # jurisdiction. To use the specific surveys for an odi jurisdiction/country
-    # *REQUIRED*
-    ckanext.odi_certificates.jurisdiction = au
-    # locale. For odi certificate's i18n/internationalization support
-    # *REQUIRED*
-    ckanext.odi_certificates.locale = en
+    - (**REQUIRED**) Base url for the odi certificate server
+
+    ``ckanext.odi_certificates.server = http://myodicertificateserver:3000``
+    
+    - (**REQUIRED**) Username (usually in email form) for an odi certificate server admin account
+
+    ``ckanext.odi_certificates.username = test@example.com``
+    
+    - (**REQUIRED**) An API token. The odi certificate server 'Account' page of any registered user will reveal their API key
+     
+    ``ckanext.odi_certificates.token = KASDFASDFXXXSed0e9fg``
+    
+    - (**REQUIRED**) Controls which specific survey is made available according to an odi jurisdiction/country survey
+ 
+    ``ckanext.odi_certificates.jurisdiction = au``
+    
+    - (**REQUIRED**) locale enables odi certificate's i18n/internationalization support
+
+    ``ckanext.odi_certificates.locale = en``
 
 
 
