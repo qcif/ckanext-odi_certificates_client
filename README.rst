@@ -78,10 +78,11 @@ Config Settings
 
     Config required to communicate with any odi certificate server::
 
-    When the odi certifcate server tries to read urls from your ckan dataset, an alias/proxy may be needed
+    - When the odi certifcate server tries to read urls from your ckan dataset, an alias/proxy may be needed
     for the odi certificate server to see your ckan datasets, whose records might use a URL not accessible by the odi certificate server
-    *OPTIONAL*
-        `ckan.site.alias_url = http://alias_site_url:5000`
+    
+    *OPTIONAL*::
+    `ckan.site.alias_url = http://alias_site_url:5000`
         
     # base url for the odi certificate server
     # *REQUIRED*
