@@ -81,6 +81,22 @@ Document any optional config settings here. For example::
     # The minimum number of hours to wait before re-checking a resource
     # (optional, default: 24).
     ckanext.odi_certificates_client.some_setting = some_default_value
+    ## When the odi certifcate server tries to read urls from your ckan dataset, an alias/proxy may be needed
+    # for the odi certificate server to see your ckan datasets, whose records might use a URL not accessible by the odi certificate server
+    ckan.site.alias_url = http://alias_site_url:5000
+    # base url for the odi certificate server
+    ckanext.odi_certificates.server = http://myodicertificateserver:3000
+    # username (usually in email form) for an odi certificate server admin account
+    ckanext.odi_certificates.username = test@example.com
+    # API token. The odi certificate server 'Account' page of any registered user will reveal their API key
+    ckanext.odi_certificates.token = KASDFASDFXXXSed0e9fg
+    # jurisdiction. To use the specific surveys for an odi jurisdiction/country
+    ckanext.odi_certificates.jurisdiction = au
+    # locale. For odi certificate's i18n/internationalization support - required for most odi certificate server API calls.
+    ckanext.odi_certificates.locale = en
+
+
+
 
 
 ------------------------
