@@ -76,11 +76,6 @@ To install ckanext-odi_certificates_client:
 Config Settings
 ---------------
 
-Document any optional config settings here. For example::
-
-    # The minimum number of hours to wait before re-checking a resource
-    # (optional, default: 24).
-    ckanext.odi_certificates_client.some_setting = some_default_value
     ## When the odi certifcate server tries to read urls from your ckan dataset, an alias/proxy may be needed
     # for the odi certificate server to see your ckan datasets, whose records might use a URL not accessible by the odi certificate server
     ckan.site.alias_url = http://alias_site_url:5000
