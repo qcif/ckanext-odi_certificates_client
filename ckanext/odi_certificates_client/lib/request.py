@@ -2,7 +2,6 @@ from logging import getLogger
 from urlparse import urljoin, urlsplit
 
 import ckan.plugins.toolkit as t
-from ckan import model
 from ckan.common import config
 
 log = getLogger(__name__)
@@ -58,25 +57,9 @@ def get_ckan_dataset_url(data_dict):
     return ckan_dataset_url
 
 
-def location_response_headers(response):
+def location_from_response_headers(response):
     if not response.headers or not response.headers.get('Location', ''):
-        t.abort(404, t._("No odi certificate location was found."))
-    return response.headers['Location'] + '.json'
-
-
-def _get_task_context(self, context):
-    sysadmin = p.toolkit.get_action('get_site_user')(context)
-    return {
-        'site_url': self.site_url,
-        'certs_config': self.certs_config,
-        'apikey': sysadmin.get('apikey')
-    }
-
-
-def ckan_context():
-    return {
-        'model': model,
-        'session': model.Session,
-        'user': t.c.user,
-        'auth_user_obj': t.c.userobj,
-    }
+        setattr(response, 'status_code', 404)
+        response.raise_for_status()
+    else:
+        return response.headers['Location'] + '.json'
