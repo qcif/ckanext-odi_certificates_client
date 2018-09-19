@@ -14,7 +14,7 @@ log = getLogger(__name__)
 
 @toolkit.side_effect_free
 def odi_certificate_get_from_id(context=None, data_dict=None):
-    log.info("entered api get from id...")
+    log.debug("entered api get from id...")
     log.debug('data dict is: %r', data_dict)
     package_data_dict = toolkit.get_action('package_show')(context, {'id': data_dict['id']})
     response = odi_certificate_location_head(context, package_data_dict)
@@ -30,13 +30,7 @@ def odi_certificate_get_from_id(context=None, data_dict=None):
 
 @toolkit.side_effect_free
 def odi_certificate_location_head(context=None, data_dict=None):
-    """
-
-    :param context:
-    :param data_dict:
-    :return:
-    """
-    log.info("entered api get location head...")
+    log.debug("entered api get location head...")
     toolkit.check_access('odi_certificates_client_get', context, data_dict)
     request_path = get_request_path_for(location_request_path)
     dataset_url = get_ckan_dataset_url(data_dict)
@@ -50,13 +44,6 @@ def odi_certificate_location_head(context=None, data_dict=None):
 
 @toolkit.side_effect_free
 def odi_certificate_get(context=None, data_dict=None):
-    """
-
-    :param context:
-    :param data_dict:
-    :param request_path:
-    :return:
-    """
     log.debug("entered api get...")
     toolkit.check_access('odi_certificates_client_get', context, data_dict)
     request_path = context['odi_certificate']['location_url']
@@ -71,14 +58,7 @@ def odi_certificate_get(context=None, data_dict=None):
 
 @toolkit.side_effect_free
 def odi_certificates_get_all(context=None, data_dict=None):
-    """
-
-    :param context:
-    :param data_dict:
-    :param request_path:
-    :return:
-    """
-    log.debug("entered controller get all...")
+    log.debug("entered api get all...")
     toolkit.check_access('odi_certificates_client_get_all', context)
 
     request_path = get_request_path_for(campaigns_feed_request_path)
