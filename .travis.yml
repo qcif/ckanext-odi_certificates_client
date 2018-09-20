@@ -1,14 +1,17 @@
+dist: trusty
+group: deprecated-2017Q4
 language: python
 sudo: required
 python:
     - "2.7"
-env: PGVERSION=9.1
-install:
-    - bash bin/travis-build.bash
-    - pip install coveralls
+services:
+    - redis-server
+    - postgresql
 script: sh bin/travis-run.sh
 branches:
   only:
   - "/^\\d+\\.\\d+(\\.\\d+)?(-\\S*)?$/"
+before_install:
+    - pip install codecov
 after_success:
     - coveralls
