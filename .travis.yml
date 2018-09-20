@@ -7,6 +7,9 @@ python:
 services:
     - redis-server
     - postgresql
+install:
+    - bash bin/travis-build.bash
+    - pip install coveralls
 script: sh bin/travis-run.sh
 branches:
   only:
