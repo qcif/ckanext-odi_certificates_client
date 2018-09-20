@@ -7,5 +7,8 @@ install:
     - bash bin/travis-build.bash
     - pip install coveralls
 script: sh bin/travis-run.sh
+branches:
+  only:
+  - "/^\\d+\\.\\d+(\\.\\d+)?(-\\S*)?$/"
 after_success:
     - coveralls
